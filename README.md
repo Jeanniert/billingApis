@@ -20,12 +20,11 @@ Para instalar este proyecto en tu entorno local, sigue estos pasos:
 
 - Clona este repositorio:
 
-git clone https://github.com/Jeanniert/billing.git
+git clone https://github.com/Jeanniert/billingApis.git
 
-- Este proyecto se encuentra dividido en 2 partes:
+- abrimos el proyecto:
+cd billingApis
 
-back-end : 
-cd billing/billingApis
 - Instala las dependencias:
 
 composer install
