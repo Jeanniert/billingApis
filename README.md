@@ -18,20 +18,27 @@ Puedes consultar la [documentación oficial de Laravel](^1^) para más informaci
 ## Instalación
 Para instalar este proyecto en tu entorno local, sigue estos pasos:
 
-- Clona este repositorio: git clone https://github.com/Jeanniert/billingApis.git
+- Clona este repositorio: 
+    // git clone https://github.com/Jeanniert/billingApis.git
 
-- abrimos el proyecto: cd billingApis
+- abrimos el proyecto: 
+    //cd billingApis
 
-- Instala las dependencias: composer install
+- Instala las dependencias: 
+    //composer install
 
-- Crea un archivo .env y copia el contenido del archivo .env.example: cp .env.example .env
+- Crea un archivo .env y copia el contenido del archivo .env.example:
+    //cp .env.example .env
 
-- Genera la clave de la aplicación: php artisan key:generate
+- Genera la clave de la aplicación:
+    //php artisan key:generate
 
 - Configura la conexión a la base de datos en el archivo .env, indicando el nombre, el usuario, la contraseña y el puerto de tu base de datos.
 
-- Migra la base de datos: php artisan migrate:refresh --seed
+- Migra la base de datos:
+    //php artisan migrate:refresh --seed
 
-- Ejecuta el servidor: php artisan serve
+- Ejecuta el servidor:
+    //php artisan serve
 
 - Abre http://localhost:8000 o en su defecto http://127.0.0.1:8000
