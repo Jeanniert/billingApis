@@ -19,7 +19,7 @@ Puedes consultar la [documentación oficial de Laravel](^1^) para más informaci
 Para instalar este proyecto en tu entorno local, sigue estos pasos:
 
 - Clona este repositorio: 
-    // git clone https://github.com/Jeanniert/billingApis.git
+git clone https://github.com/Jeanniert/billingApis.git
 
 - abrimos el proyecto: 
     //cd billingApis
