@@ -186,7 +186,7 @@
                 }
             }
         },
-        "logout": {
+        "/api/logout": {
             "get": {
                 "tags": [
                     "Auth"

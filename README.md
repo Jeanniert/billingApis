@@ -2,8 +2,8 @@
 
 
 
-# Sistema de Facturación en Laravel
-Sistema de Facturación en Laravel es un proyecto que te permite gestionar las facturas de tus clientes de forma fácil y segura. Lo creé como parte de mi aprendizaje de Laravel, el popular framework de PHP.
+# APIS de Facturación Electrónica en Laravel
+APIS de Facturación en Laravel es un proyecto que te permite gestionar las facturas de tus clientes de forma fácil y segura. Lo creé como parte de mi aprendizaje de Laravel, el popular framework de PHP.
 
 ## Requisitos
 Para instalar y usar este proyecto, necesitas tener lo siguiente:
@@ -18,27 +18,63 @@ Puedes consultar la [documentación oficial de Laravel](^1^) para más informaci
 ## Instalación
 Para instalar este proyecto en tu entorno local, sigue estos pasos:
 
-- Clona este repositorio: 
-git clone https://github.com/Jeanniert/billingApis.git
+- Clona este repositorio:    `git clone https://github.com/Jeanniert/billingApis.git`
 
-- abrimos el proyecto: 
-    //cd billingApis
+- abrimos el proyecto:     `cd billingApis`
 
-- Instala las dependencias: 
-    //composer install
+- Instala las dependencias:    `composer install`
 
-- Crea un archivo .env y copia el contenido del archivo .env.example:
-    //cp .env.example .env
+- Crea un archivo .env y copia el contenido del archivo .env.example:    `cp .env.example .env`
 
-- Genera la clave de la aplicación:
-    //php artisan key:generate
+- Genera la clave de la aplicación:    `php artisan key:generate`
 
 - Configura la conexión a la base de datos en el archivo .env, indicando el nombre, el usuario, la contraseña y el puerto de tu base de datos.
 
-- Migra la base de datos:
-    //php artisan migrate:refresh --seed
+- Migra la base de datos:    `php artisan migrate:refresh --seed`
 
-- Ejecuta el servidor:
-    //php artisan serve
+- Ejecuta el servidor:    `php artisan serve`
 
 - Abre http://localhost:8000 o en su defecto http://127.0.0.1:8000
+
+
+## Documentacion de la Apis:
+
+### Auth
+
+| Method   | URL                                      | Description                              |
+| -------- | ---------------------------------------- | ---------------------------------------- |
+| `POST`   | `/api/auth/login`                        | Sign in.                                 |
+| `POST`   | `/api/auth/register`                     | Register User.                           |
+| `GET`    | `/api/logout`                           | Sign in (you must be logged in to use this endpoint.).                    |
+
+
+
+### Company
+
+| Method   | URL                                      | Description                              |
+| -------- | ---------------------------------------- | ---------------------------------------- |
+| `GET`    | `/api/company`                           | Retrieve all company.                    |
+| `POST`   | `/api/company`                             | Create a new company.                    |
+| `PUT`    | `/api/company/{id}`                        | Update data company.                     |
+| `DELETE` | `/api/company/{id}`                        | Delete company .                    |
+
+
+
+### Customers
+
+| Method   | URL                                      | Description                              |
+| -------- | ---------------------------------------- | ---------------------------------------- |
+| `GET`    | `/api/customer`                           | List all invoice.                    |
+| `POST`   | `/api/customer`                             | Create a new customer.                    |
+| `PUT`    | `/api/customer/{id}`                        | Update data customer.                     |
+| `DELETE` | `/api/customer/{id}`                        | Delete customer .                    |
+
+
+
+### Invoice
+
+| Method   | URL                                      | Description                              |
+| -------- | ---------------------------------------- | ---------------------------------------- |
+| `GET`    | `/api/invoice`                           | Retrieve all invoice.                    |
+| `GET`    | `/api/invoice/{id}`                           | Download invoice                    |
+| `POST`   | `/api/invoice`                             | Create a new invoice.                    |
