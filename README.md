@@ -64,7 +64,7 @@ Para instalar este proyecto en tu entorno local, sigue estos pasos:
 
 | Method   | URL                                      | Description                              |
 | -------- | ---------------------------------------- | ---------------------------------------- |
-| `GET`    | `/api/customer`                           | List all invoice.                    |
+| `GET`    | `/api/customer`                           | Retrieve all customer.                    |
 | `POST`   | `/api/customer`                             | Create a new customer.                    |
 | `PUT`    | `/api/customer/{id}`                        | Update data customer.                     |
 | `DELETE` | `/api/customer/{id}`                        | Delete customer .                    |
@@ -75,6 +75,6 @@ Para instalar este proyecto en tu entorno local, sigue estos pasos:
 
 | Method   | URL                                      | Description                              |
 | -------- | ---------------------------------------- | ---------------------------------------- |
-| `GET`    | `/api/invoice`                           | Retrieve all invoice.                    |
+| `GET`    | `/api/invoice`                           | List all invoice.                    |
 | `GET`    | `/api/invoice/{id}`                           | Download invoice                    |
 | `POST`   | `/api/invoice`                             | Create a new invoice.                    |
