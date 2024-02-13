@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Customer;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class InvoiceController extends Controller
 {
@@ -32,7 +34,7 @@ class InvoiceController extends Controller
         $invoice= Invoice::select('invoices.*', 'companies.name as company', 'customers.name as customer')
         ->join('companies','companies.id','=','invoices.company_id')
         ->join('customers','customers.id','=','invoices.customer_id')
-        ->get();
+        ->paginate(10);
         return response()->json($invoice);
     }
 
@@ -129,12 +131,43 @@ class InvoiceController extends Controller
         ],200);
     }
 
-
+    
     /**
- * @OA\Get(
+ * @OA\Delete(
  * path="/api/invoice/{id}",
- * summary="Download invoice",
- * operationId="invoiceDownload",
+ * summary="Delete invoice",
+ * operationId="deleteInvoice",
+ * tags={"Invoice"},
+ * 
+ * @OA\Parameter( in="path",  name="id",  required=true,
+ *     @OA\Schema( type="integer" ),
+ * ),
+ * 
+ * @OA\Response(
+ *    response=200,
+ *    description="OK",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="status", type="boolean", example="true"),
+ *       @OA\Property(property="message", type="string", example="Invoice deleted successfully")
+ *        )
+ *     )
+ * )
+ */
+public function destroy(Invoice $invoice)
+{
+
+    $invoice->delete();
+    return response()->json([
+        'status'=> true,
+        'message'=> 'Invoice deleted successfully'
+    ],200);
+}
+
+/**
+ * @OA\Get(
+ * path="/api/report",
+ * summary="Report invoice",
+ * operationId="reportInvoice",
  * tags={"Invoice"},
  * 
  * 
@@ -142,18 +175,34 @@ class InvoiceController extends Controller
  *    response=200,
  *    description="OK",
  *    @OA\JsonContent(
- *       @OA\Property(property="status", type="boolean", example="true"),
- *       @OA\Property(property="data", type="object")
+ *       @OA\Property(property="status", type="boolean", example="true")
  *        )
  *     )
  * )
  */
-    public function invoiceDownload(Int $invoice_id)
+public function report(Int  $invoice_id)
     {
-        $invoice = Invoice::where('id', $invoice_id)->first();
-        return response()->json([
-            'status'=> true,
-            'data'=> $invoice
+        $invoice = Invoice::where('invoices.id', $invoice_id)
+        ->select('invoices.*',
+        'companies.name as company',
+        'companies.identification_number as companyIdentification',
+        'companies.address as companyAddress',
+        'companies.phone as companyPhone',
+        'companies.logo as companyLogo',    
+        'customers.name as customer',
+        'customers.identification_number as customerIdentification',
+        'customers.address as customerAddress',
+        'customers.phone as customerPhone',
+        'customers.logo as customerLogo',
+        'customers.company as customerCompany')
+        ->join('companies','companies.id','=','invoices.company_id')
+        ->join('customers','customers.id','=','invoices.customer_id')
+        ->first();
+
+        return view('invoice.report', [
+            'invoice' => $invoice,
         ]);
+
     }
+
 }

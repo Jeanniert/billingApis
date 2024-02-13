@@ -19,4 +19,5 @@ class Invoice extends Model
         'tax',
         'correlative',     
     ];
+
 }

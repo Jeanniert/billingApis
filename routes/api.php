@@ -28,8 +28,7 @@ Route::post('auth/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function (){
         Route::resource('customer', CustomerController::class);
         Route::resource('company', CompanyController::class);
-        Route::resource('invoice', InvoiceController::class);
-        Route::get('invoiceDownload/{invoice_id}', [InvoiceController::class, 'invoiceDownload']);
+        Route::resource('invoice', InvoiceController::class);Route::get('report/{invoice_id}', [InvoiceController::class, 'report']);
         Route::get('logout', [AuthController::class, 'logout']);
     });
 
