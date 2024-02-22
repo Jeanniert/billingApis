@@ -32,6 +32,8 @@ Para instalar este proyecto en tu entorno local, sigue estos pasos:
 
 - Migra la base de datos:    `php artisan migrate:refresh --seed`
 
+- Crear enlace de almacenamiento para las imagenes:    `php artisan storage:link`
+
 - Ejecuta el servidor:    `php artisan serve`
 
 - Abre http://localhost:8000 o en su defecto http://127.0.0.1:8000
