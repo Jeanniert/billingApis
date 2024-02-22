@@ -133,9 +133,6 @@ class CompanyController extends Controller
                 'errors'=> $validator->errors()->all()
             ], 400);
         }
-        
-        $user= auth()->id();
-        $request['user_id'] = $user;
 
         $customer= new Company($request->input());
         $customer->save();
@@ -223,32 +220,15 @@ class CompanyController extends Controller
     public function update(Request $request, Company $company)
     {
         $rules = [
+            'identification_number'=>"require|unique:companies,identification_number,$company->identification_number",
             'name' => 'required|string|max:50',
-            'identification_number' => 'required|string|max:15',
             'address' => 'required|string|max:100',
             'phone' => 'required|string|max:15',
-            'logo' => 'image|file|max:1024',
             'currency' => 'required|string|max:20',
             'description' => 'required|string|max:100',                              
         ];
 
         $validator= Validator::make($request->input(), $rules);
-        
-
-        if ($file = $request->file('logo')) {
-            $fileName = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
-            $path = 'public/company/';
-
-            /**
-             * Delete photo if exists.
-             */
-            if($company->logo){
-                Storage::delete($path . $company->logo);
-            }
-
-            $file->storeAs($path, $fileName);
-            $request['logo'] = $fileName;
-        }
 
         if($validator->fails()){
             return response()->json([
@@ -257,8 +237,6 @@ class CompanyController extends Controller
             ], 400);
         }
 
-        $user= auth()->id();
-        $request['user_id']= $user;
         $company->update($request->input());
 
         return response()->json([

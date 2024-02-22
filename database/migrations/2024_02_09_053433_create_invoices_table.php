@@ -18,11 +18,12 @@ return new class extends Migration
             $table->json('product');
             $table->float('total', 8,2);
             $table->float('tax', 3,2)->nullable();
+            $table->float('totalWithTax', 3,2)->nullable();
+            $table->float('subtotal',8,2);
             $table->string('correlative')->unique();
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      */

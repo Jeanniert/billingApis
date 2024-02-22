@@ -62,7 +62,7 @@ public function create(Request $request){
         $rules= [
             'name'=> 'required|string|max:100',
             'address' => 'required|string|max:100',
-            'phone' => 'required|string|max:15',
+            'phone' => 'required|numeric',
             'email'=> 'required|string|email|max:100|unique:users',
             'password'=> 'required|string|min:8'
         ];

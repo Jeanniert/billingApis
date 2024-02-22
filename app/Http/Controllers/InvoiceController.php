@@ -96,8 +96,7 @@ class InvoiceController extends Controller
         $rules = [
             'company_id' => 'required',
             'customer_id' => 'required',
-            'product' => 'required',
-            'total' => 'required',                     
+            'product' => 'required',                    
         ];
 
         $validator= Validator::make($request->input(), $rules);
@@ -121,6 +120,8 @@ class InvoiceController extends Controller
         $invoice->total = $request->input('total');
         $invoice->tax = $request->input('tax');
         $invoice->product = $request->input('product');
+        $invoice->totalWithTax= $request->input('totalWithTax');
+        $invoice->subtotal= $request->input('subtotal');
         $invoice->correlative= $correlative;
         $invoice->save();
 
@@ -199,9 +200,10 @@ public function report(Int  $invoice_id)
         ->join('customers','customers.id','=','invoices.customer_id')
         ->first();
 
-        return view('invoice.report', [
-            'invoice' => $invoice,
-        ]);
+        
+        return response()->json([
+            'data'=> $invoice
+        ],200);
 
     }
 

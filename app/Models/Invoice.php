@@ -17,6 +17,8 @@ class Invoice extends Model
         'customer_id',        
         'total',
         'tax',
+        'totalWithTax',
+        'subtotal',
         'correlative',     
     ];
 

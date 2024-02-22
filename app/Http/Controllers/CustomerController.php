@@ -128,8 +128,6 @@ class CustomerController extends Controller
             ], 400);
         }
         
-        $user= auth()->id();
-        $request['user_id']= $user;
         $customer= new Customer($request->input());
         $customer->save();
 
@@ -212,30 +210,14 @@ class CustomerController extends Controller
     public function update(Request $request, Customer $customer)
     {
         $rules = [
+            'identification_number'=>"require|unique:customers,identification_number,$customer->identification_number",
             'name' => 'required|string|max:50',
             'address' => 'required|string|max:100',
             'phone' => 'required|string|max:15',
-            'logo' => 'image|file|max:1024',
-            'company' => 'required|string|max:5',
-            'identification_number' => 'required|string|max:15',
+            'company' => 'required|string',
         ];
 
         $validator= Validator::make($request->input(), $rules);
-
-        if ($file = $request->file('logo')) {
-            $fileName = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
-            $path = 'public/customers/';
-
-            /**
-             * Delete photo if exists.
-             */
-            if($customer->logo){
-                Storage::delete($path . $customer->logo);
-            }
-
-            $file->storeAs($path, $fileName);
-            $request['logo'] = $fileName;
-        }
 
         if($validator->fails()){
             return response()->json([
@@ -243,11 +225,8 @@ class CustomerController extends Controller
                 'errors'=> $validator->errors()->all()
             ], 400);
         }
-        
-        $user= auth()->id();
-        $request['user_id']= $user;
-        $customer->update($request->input());
 
+        $customer->update($request->input());
         return response()->json([
             'status'=> true,
             'message'=> 'Customer updated successfully'
