@@ -122,6 +122,7 @@ class InvoiceController extends Controller
         $invoice->product = $request->input('product');
         $invoice->totalWithTax= $request->input('totalWithTax');
         $invoice->subtotal= $request->input('subtotal');
+        $invoice->date= $request->input('date');
         $invoice->correlative= $correlative;
         $invoice->save();
 

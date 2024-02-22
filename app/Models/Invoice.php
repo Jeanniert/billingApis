@@ -19,7 +19,8 @@ class Invoice extends Model
         'tax',
         'totalWithTax',
         'subtotal',
-        'correlative',     
+        'correlative',
+        'date',     
     ];
 
 }

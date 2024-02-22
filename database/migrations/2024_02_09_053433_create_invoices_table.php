@@ -21,6 +21,7 @@ return new class extends Migration
             $table->float('totalWithTax', 3,2)->nullable();
             $table->float('subtotal',8,2);
             $table->string('correlative')->unique();
+            $table->string('date');
             $table->timestamps();
         });
     }
