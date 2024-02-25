@@ -17,8 +17,8 @@ return new class extends Migration
             $table->foreignId('customer_id')->constrained('customers')->onUpdate('cascade');
             $table->json('product');
             $table->float('total', 8,2);
-            $table->float('tax', 3,2)->nullable();
-            $table->float('totalWithTax', 3,2)->nullable();
+            $table->float('tax', 8,2)->nullable();
+            $table->float('totalWithTax', 8,2)->nullable();
             $table->float('subtotal',8,2);
             $table->string('correlative')->unique();
             $table->string('date');
